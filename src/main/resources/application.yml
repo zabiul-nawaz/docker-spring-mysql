@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: flight-booking-service
+  datasource: 
+    url: jdbc:mysql://mysqlserver:3306/booking?useSSL=false&allowPublicKeyRetrieval=true
+    username: dbuser
+    password: dbpassword
+  jpa:
+    properties:
+        hibernate:
+            dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+            ddl-auto: validate
+
+server: 
+  port: 9990

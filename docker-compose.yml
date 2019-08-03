@@ -1,0 +1,32 @@
+version : '2'
+services:
+  
+  bookingserver:
+    build:
+      context: . 
+      dockerfile: bookingserver.dockerfile
+    ports: 
+      - "9990:9990"
+    networks:
+      - net-micro-services
+    depends_on:
+      - mysqlserver
+  
+  mysqlserver:
+    build:
+      context: . 
+      dockerfile: mysqlserver.dockerfile
+    ports:
+      - "3306:3306"
+    networks:
+      - net-micro-services
+    environment:
+      MYSQL_DATABASE: booking
+      MYSQL_USER: dbuser
+      MYSQL_PASSWORD: dbpassword
+      MYSQL_ROOT_PASSWORD: dbrootpassword
+    container_name: mysqlserver
+
+networks:
+  net-micro-services:
+    driver: bridge
